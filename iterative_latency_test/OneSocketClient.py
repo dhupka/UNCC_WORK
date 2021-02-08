@@ -11,7 +11,7 @@ async def gettingConnection(host,port,socket):
 
 async def send_msg(s):
 	msg = "Strong storm coming, pack up and leave, 5 minutes"
-	msg_utf = msg.encode() #SDKFJBSDKFBSDKFHBSKEHFB
+	msg_utf = msg.encode() 
 	s.sendall(msg_utf)
 
 	#print("Size of Message: {0}".format(sys.getsizeof(msg_utf)))
