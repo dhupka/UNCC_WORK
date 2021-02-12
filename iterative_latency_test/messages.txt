@@ -5,3 +5,7 @@ Danger, run, now! 68
 Barrier removed, fix it, now 81
 
 Staying too close to the border, move, now 93
+
+
+Scenario 1 Digital Twin - Tablet separate from goggles by Xm
+Scenario 2 Bundle Individual Package - Goggles and Tablet together, separate from router by Xm
