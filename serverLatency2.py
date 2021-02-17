@@ -7,8 +7,8 @@ import csv
 #Creating the constants that we are using 
 message = "Strong storm coming, pack up and leave, 5 minutes"
 HOST = '192.168.0.167' # IP address of server
-PORT = 9001
-PORT2 = 8001
+PORT = 8000
+PORT2 = 9000
 
 async def gettingClientConnection(host,port,socket):
 	socket.connect((host, port))
@@ -66,7 +66,7 @@ async def main():
     print(address2)
 
     iteration = 0	
-    with open('latency-Scenario1-10m.csv','w') as f1:
+    with open('latency-Scenario2-40m-V2.csv','w') as f1:
         writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
         while iteration < 1000:
             # if iteration == 0:
