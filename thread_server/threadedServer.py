@@ -3,6 +3,9 @@
 # Ensure we arent losing anything, locking with purpose of protection
 #Only using one port and one socket, as threading is purpose of ensuring we can do this all on one
 
+#For PSR if possible get latency testing of this multithreaded implementation (single socket, single port, mutli thread) 
+#compare with latencies of two port, two socket, single thread iterative latency testing
+
 import socket
 from _thread import *
 import threading
