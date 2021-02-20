@@ -7,7 +7,7 @@ import csv
 #Creating the constants that we are using 
 message = "Strong storm coming, pack up and leave, 5 minutes"
 HOST = '192.168.0.167' # IP address of server
-PORT = 9750
+PORT = 9000
 PORT2 = 8001
 
 async def gettingClientConnection(host,port,socket):
@@ -60,7 +60,7 @@ async def main():
     print(address1)
     iteration = 0	
 
-    while iteration < 1:
+    while iteration < 100:
         # print("Before first message.")
         time0 = time.time()
         send_msg(connection1 , message)
@@ -68,7 +68,9 @@ async def main():
         
         await recievingDataServer(connection1 , 100)
         print("Recieved data from connection 1 ")
+        time1 = time.time()
         print(iteration)
+        print((time1-time0) * 1000 /2)
         iteration = iteration + 1
 
 
