@@ -47,10 +47,7 @@ async def send_msg1(connection , msg):
         msg_utf = msg.encode()
         connection.sendall(msg_utf)
 
-async def main():
-    
-    
-    
+async def main():    
     s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

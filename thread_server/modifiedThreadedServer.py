@@ -17,7 +17,7 @@ import time
 import asyncio
 
 #Creating the constants that we are using 
-message = "LONG WARNING NUMBER"
+message = "Strong storm coming, pack up and leave, 5 minutes"
 HOST = '192.168.0.167' # IP address of server
 PORT = 9000
 threadCount = 0
@@ -27,24 +27,34 @@ serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 
 serverSocket.bind((HOST,PORT))
 
+def receivingDataServer(connection , size):
+    data = connection.recv(size)
+    message = data.decode('utf-8' , 'replace')
+    sizeOfMessage = sys.getsizeof(message)
+    # print("Size of Message: {0}".format(sys.getsizeof(message)))
+    print("Received Message: ", message[2:]) #Removing tab and ascii character that is added for some reason TODO
+    
+def send_msg(connection , msg):
+    msg_utf = msg.encode()
+    connection.sendall(msg_utf)
+    
+
 #After connection established, send danger number to client 
 def threadedClient(connection):
     #This may need to be an infinite loop to always be sending our messages to various clients
     #or a loop that will send this message after a sleep/wait to client
     #Everytime the message is sent at X interval it needs to be a different warning - for loop, generate random number, ensure it is different
+    
+    
     connection.send(str.encode("Server is working: "))  #Sending danger number 
     i=0
     #START NEW THREAD - FOR SEND / RECEIVE
     while i < 1000:
-        data = connection.recv(1024)
-        message = data.decode('utf-8' , 'replace')
-        print("Received Message: ", message[2:])
-        print(i)
-        i += 1
-        connection.sendall(message.encode())
-        time1 = time.time()
-        rtt = ((time1 - time0) * 1000)/2
-        print(rtt)
+        time0 = time.time()
+        send_msg(connection,message)
+        receivingDataServer(connection, 100)
+        rtt = ((time.time() - time0) * 1000)/2
+        print("Total Latency: {:.2f} ms".format(rtt))
     print('Done with that thread')
     # Recieve back initial danger number the server sent to the client -> possibly do error handling to ensure this message is the same (?)
     # data = connection.recv(1024)

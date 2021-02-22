@@ -60,7 +60,7 @@ async def main():
     print(address1)
     iteration = 0	
 
-    while iteration < 100:
+    while iteration < 1000:
         # print("Before first message.")
         time0 = time.time()
         send_msg(connection1 , message)

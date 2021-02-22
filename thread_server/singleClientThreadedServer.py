@@ -6,15 +6,12 @@
 #For PSR if possible get latency testing of this multithreaded implementation (single socket, single port, mutli thread) 
 #compare with latencies of two port, two socket, single thread iterative latency testing
 
-#Sending/Receiving are individual threads, not just for the client.
-
 import socket
 from _thread import *
 import threading
 import sys
 import csv
 import time
-import asyncio
 
 #Creating the constants that we are using 
 message = "LONG WARNING NUMBER"
@@ -34,7 +31,6 @@ def threadedClient(connection):
     #Everytime the message is sent at X interval it needs to be a different warning - for loop, generate random number, ensure it is different
     connection.send(str.encode("Server is working: "))  #Sending danger number 
     i=0
-    #START NEW THREAD - FOR SEND / RECEIVE
     while i < 1000:
         data = connection.recv(1024)
         message = data.decode('utf-8' , 'replace')
@@ -42,9 +38,6 @@ def threadedClient(connection):
         print(i)
         i += 1
         connection.sendall(message.encode())
-        time1 = time.time()
-        rtt = ((time1 - time0) * 1000)/2
-        print(rtt)
     print('Done with that thread')
     # Recieve back initial danger number the server sent to the client -> possibly do error handling to ensure this message is the same (?)
     # data = connection.recv(1024)
