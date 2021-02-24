@@ -9,3 +9,4 @@ Staying too close to the border, move, now 93
 
 Scenario 1 Digital Twin - Tablet separate from goggles by Xm - Tablet right next to router
 Scenario 2 Bundle Individual Package - Goggles and Tablet together, separate from router by Xm
+
