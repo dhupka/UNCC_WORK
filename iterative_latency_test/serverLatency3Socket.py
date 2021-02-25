@@ -5,7 +5,6 @@ import sys
 import csv
 
 #Creating the constants that we are using 
-#Test Commmit
 message = "Strong storm coming, pack up and leave, 5 minutes"
 HOST = '192.168.0.167' # IP address of server
 PORT = 7000 #Goggles
@@ -27,7 +26,7 @@ async def acceptingServerSocket(socket):
 async def recievingDataServer(connection , size):
     data = connection.recv(size)
     message = data.decode('utf-8' , 'replace')
-    sizeOfMessage = sys.getsizeof(message)
+    #sizeOfMessage = sys.getsizeof(message)
     # print("Size of Message: {0}".format(sys.getsizeof(message)))
     #print("Received Message: ", message[2:]) #Removing tab and ascii character that is added for some reason TODO
 
