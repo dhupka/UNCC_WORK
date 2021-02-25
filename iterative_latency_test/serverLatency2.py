@@ -5,6 +5,7 @@ import sys
 import csv
 
 #Creating the constants that we are using 
+#Test Commmit
 message = "Strong storm coming, pack up and leave, 5 minutes"
 HOST = '192.168.0.167' # IP address of server
 PORT = 7000 #Goggles
