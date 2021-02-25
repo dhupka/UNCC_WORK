@@ -56,7 +56,7 @@ async def main():
     print(address3)
 
     iteration = 0	
-    with open('latency-Scenario2-40m-V2.csv','w') as f1:
+    with open('latency-GoggleWatchBundle-0m.csv','w') as f1:
         writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
         while iteration < 1000:
 
