@@ -56,7 +56,7 @@ async def main():
     # print(address3)
 
     iteration = 0	
-    with open('latency-Tablet-0m.csv','w') as f1:
+    with open('latency-Tablet-20m.csv','w') as f1:
         writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
         while iteration < 1000:
 

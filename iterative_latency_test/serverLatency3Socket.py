@@ -10,7 +10,7 @@ HOST = '192.168.0.167' # IP address of server
 PORT = 7000 #Goggles
 PORT2 = 8000 #Tablet
 PORT3 = 9000 #Watch
-PORT4 = 6000 #App
+#PORT4 = 6000 #App
 
 async def gettingClientConnection(host,port,socket):
 	socket.connect((host, port))
@@ -37,56 +37,56 @@ def send_msg(connection , msg):
     
 
 async def main():    
-    # s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # s1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s2.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    # s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # s3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # s4 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # s4.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 
-    # socket1 = await startingSocketServer(HOST,PORT,s1)
+    socket1 = await startingSocketServer(HOST,PORT,s1)
     socket2 = await startingSocketServer(HOST,PORT2,s2)
-    # socket3 = await startingSocketServer(HOST,PORT3,s3)
+    socket3 = await startingSocketServer(HOST,PORT3,s3)
     # socket4 = await startingSocketServer(HOST,PORT4,s4)
     
 
-    # connection1 , address1 = await acceptingServerSocket(socket1)
-    # print(address1)
+    connection1 , address1 = await acceptingServerSocket(socket1)
+    print(address1)
     connection2 , address2 = await acceptingServerSocket(socket2)
     print(address2)
-    # connection3 , address3 = await acceptingServerSocket(socket3)
-    # print(address3)
+    connection3 , address3 = await acceptingServerSocket(socket3)
+    print(address3)
     # connection4 , address4 = await acceptingServerSocket(socket4)
     # print(address4)
 
     iteration = 0	
-    with open('latency-GoggleWatchTabletBundle-0m.csv','w') as f1:
+    with open('latency-GoggleWatchTabletBundle-50m.csv','w') as f1:
         writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
         while iteration < 1000:
 
             print("Before first message.")
             time0 = time.time()
-            # send_msg(connection1 , message)
-            # print("Sent message to connection 1")
+            send_msg(connection1 , message)
+            print("Sent message to connection 1")
 
             send_msg(connection2 , message)
             print("Sent message to connection 2 ")
             
-            # send_msg(connection3 , message)
-            # print("Sent message to connection 3 ")
+            send_msg(connection3 , message)
+            print("Sent message to connection 3 ")
             
             # send_msg(connection4 , message)
             # print("Sent message to connection 4 ")
 
-            # await recievingDataServer(connection1 , 100)
-            # print("Recieved data from connection 1 ")
+            await recievingDataServer(connection1 , 100)
+            print("Recieved data from connection 1 ")
             await recievingDataServer(connection2, 100)
             print("Recieved data from connection 2 ")
-            # await recievingDataServer(connection3, 100)
-            # print("Recieved data from connection 3 ")
+            await recievingDataServer(connection3, 100)
+            print("Recieved data from connection 3 ")
             # await recievingDataServer(connection4, 100)
             # print("Recieved data from connection 4 ")
             rtt = ((time.time() - time0) * 1000)/2
@@ -96,12 +96,12 @@ async def main():
             iteration = iteration + 1
             print(iteration)
 
-        # s1.shutdown(socket.SHUT_RDWR)
-        # s1.close()
+        s1.shutdown(socket.SHUT_RDWR)
+        s1.close()
         s2.shutdown(socket.SHUT_RDWR)
         s2.close()
-        # s3.shutdown(socket.SHUT_RDWR)
-        # s3.close()
+        s3.shutdown(socket.SHUT_RDWR)
+        s3.close()
         # s4.shutdown(socket.SHUT_RDWR)
         # s4.close()
 
